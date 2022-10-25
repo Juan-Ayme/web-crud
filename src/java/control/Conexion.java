@@ -18,15 +18,10 @@ public class Conexion
         {
             Class.forName(DRIVER);
             conecta=DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexion exitosa");
         } catch (Exception e) 
         {
             e.printStackTrace(System.out);
         }
         return conecta;
-    }
-    public static void main(String []args)
-    {
-        Conexion.conectar();
     }
 }
