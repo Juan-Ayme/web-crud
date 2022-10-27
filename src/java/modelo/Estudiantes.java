@@ -1,33 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package modelo;
 
-class Alumnos 
+/**
+ *
+ * @author Maver
+ */
+public class Estudiantes 
 {
-    private String codigo,nombre;
-    private double notaA,notaB,notaC,Promedio;
-    private int asistencia;
+   private String codigo,nombre;
+   private double notaA,notaB,notaC,Promedio;
+   private int asistencia;
 
-    public Alumnos(String codigo, String nombre, double notaA, double notaB, double notaC, double Promedio, int asistencia) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.notaA = notaA;
-        this.notaB = notaB;
-        this.notaC = notaC;
-        this.Promedio = Promedio;
-        this.asistencia = asistencia;
-    }
-    public Alumnos(String codigo, String nombre, double notaA, double notaB, double notaC, int asistencia) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.notaA = notaA;
-        this.notaB = notaB;
-        this.notaC = notaC;
-        this.Promedio = Promedio;
-        this.asistencia = asistencia;
-    }
     
-    public Alumnos()
-    {
-        
+   public Estudiantes()
+   {
+       
+   }
+    public Estudiantes(String codigo, String nombre, double notaA, double notaB, double notaC, double Promedio, int asistencia) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.notaA = notaA;
+        this.notaB = notaB;
+        this.notaC = notaC;
+        this.Promedio = Promedio;
+        this.asistencia = asistencia;
+    }
+    public Estudiantes(String codigo, String nombre, double notaA, double notaB, double notaC, int asistencia) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.notaA = notaA;
+        this.notaB = notaB;
+        this.notaC = notaC;
+        this.asistencia = asistencia;
     }
 
     public String getCodigo() {
@@ -86,7 +95,7 @@ class Alumnos
         this.asistencia = asistencia;
     }
     
-    
+   
     
     
 }

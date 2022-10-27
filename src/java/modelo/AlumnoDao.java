@@ -17,7 +17,7 @@ public class AlumnoDao
         String sql="select * from alumnos";
         ResultSet rs;
         
-        List<Alumnos> alumnos=new ArrayList<>();
+        List<Estudiantes> alumnos=new ArrayList<Estudiantes>();
         
         try 
         {
@@ -26,13 +26,13 @@ public class AlumnoDao
             
             while(rs.next())
             {
-               Alumnos alumno=new Alumnos();
+               Estudiantes alumno=new Estudiantes();
                alumno.setCodigo(rs.getString(1));
                alumno.setNombre(rs.getString(2));
                alumno.setNotaA(rs.getDouble(3));
                alumno.setNotaB(rs.getDouble(4));
                alumno.setNotaC(rs.getDouble(5));
-               alumno.setPromedio(promedio(alumno));
+               alumno.setPromedio(rs.getDouble(6));
                alumno.setAsistencia(rs.getInt(7));
                
                alumnos.add(alumno);
@@ -42,12 +42,10 @@ public class AlumnoDao
         {
             e.printStackTrace(System.out);
         }
-        
-        
         return alumnos;
     }
 
-    public int guardar(Alumnos alumno)
+    public int guardar(Estudiantes alumno)
     {
         String sql="insert into alumnos values(?,?,?,?,?,?,?)";
         try 
@@ -89,7 +87,7 @@ public class AlumnoDao
         return validar;
     }
     
-    public int actualizar(Alumnos alumno)
+    public int actualizar(Estudiantes alumno)
     {
         String sql="update alumnos set nombre=?, notaa=?,notab=?,notac=?,promedio=?,asistencia=? where id_alumno=?";
         
@@ -116,20 +114,47 @@ public class AlumnoDao
     
     
     //metodos para las funciones principales
-    public double promedio(Alumnos alumno)
+    public double promedio(Estudiantes alumno)
     {
        double promedio=(alumno.getNotaA()+alumno.getNotaB()+alumno.getNotaC())/3;
        return  Math.round(promedio); 
     } 
     
-    
-    
+    public Estudiantes listarCodigo(String codigo)
+    {
+        String sql="select * from alumnos where id_alumno=?";
+        ResultSet rs;
+        
+        Estudiantes alumno=new Estudiantes();
+        try 
+        {
+            ps=Conexion.conectar().prepareStatement(sql);
+            ps.setString(1, codigo);
+            rs=ps.executeQuery();
+            
+            while (rs.next()) 
+            {                
+                alumno.setCodigo(rs.getString(1));
+                alumno.setNombre(rs.getString(2));
+                alumno.setNotaA(rs.getDouble(3));
+                alumno.setNotaB(rs.getDouble(4));
+                alumno.setNotaC(rs.getDouble(5));
+                alumno.setPromedio(rs.getDouble(6));
+                alumno.setAsistencia(rs.getInt(7));
+            }      
+        } catch (Exception e) 
+        {
+            e.printStackTrace(System.out);
+        }
+        
+        return alumno;
+    }  
     
 //    public static void main(String [] args)
 //    {
 //        Alumnos a=new Alumnos("2A","jose",15.9,15.8,12,8);
 //        AlumnoDao dao=new AlumnoDao();
-//        dao.guardar(a);
+//        dao.listarCodigo("2A");
 //    }
     
 }
